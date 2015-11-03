@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mm",
+  "name": "Adversus Mod",
+  "description": "The World Of the Adversus",
+  "version": "${1.0}",
+  "mcversion": "${1.7.10}",
+  "url": "http://adversusmod.weebly.com/",
+  "updateUrl": "",
+  "authorList": ["abused_master"],
+  "credits": "Special Thanks to Darth for all these amazing textures",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
