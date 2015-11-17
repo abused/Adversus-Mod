@@ -1,0 +1,43 @@
+package proxy;
+
+import Models.DennisModel;
+import TileEntity.StoneBlockEntity;
+import TileEntity.StoneBlockRenderer;
+import TileEntity.WitchBlockEntity;
+import TileEntity.WitchBlockRenderer;
+import TileEntity.WizBlockEntity;
+import TileEntity.WizBlockRenderer;
+import TileEntity.Mobs.EntityClam;
+import TileEntity.Statues.AbusedBlockEntity;
+import TileEntity.Statues.AbusedBlockRenderer;
+import TileEntity.Statues.ArrxzonBlockEntity;
+import TileEntity.Statues.ArrxzonBlockRenderer;
+import TileEntity.Statues.DennisBlockEntity;
+import TileEntity.Statues.DennisBlockRenderer;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+
+public class ClientProxy extends CommonProxy {
+
+	public void registerRenderThings() {
+		ClientRegistry.bindTileEntitySpecialRenderer(WizBlockEntity.class, new WizBlockRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(WitchBlockEntity.class, new WitchBlockRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(StoneBlockEntity.class, new StoneBlockRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(DennisBlockEntity.class, new DennisBlockRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(AbusedBlockEntity.class, new AbusedBlockRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(ArrxzonBlockEntity.class, new ArrxzonBlockRenderer());
+		this.entityRenderMap.put(EntityClam.class, new RenderClam(new ModelClam(), 0.7F));
+
+
+
+	}
+	
+	public void registerTileEntitySpecialRenderer() {
+	
+
+	}
+	
+	
+		
+}

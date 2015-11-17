@@ -27,8 +27,8 @@ public class Regen extends Item {
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
 	{
-		par3List.add("§4The Most Op Regeneration Item");
-		par3List.add("§4Figure out the Secret of It!");
+		par3List.add("The Most Op Regeneration Item");
+		par3List.add("Figure out the Secret of It!");
 
 	}
 	

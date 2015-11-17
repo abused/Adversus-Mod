@@ -1,0 +1,39 @@
+package TileEntity.Mobs;
+
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
+
+public class EntityClam extends EntityLiving {
+
+	public EntityClam(World p_i1595_1_) {
+		super(p_i1595_1_);
+	}
+
+	@Override
+	protected boolean isAIEnabled()
+	{
+	   return true;
+	}
+	
+	protected boolean attackEntityAsMob() {
+		return true;
+	}
+	
+
+@Override
+
+public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
+{
+    if (isEntityInvulnerable())
+    {
+        return false;
+    }
+    else
+    {
+
+        return super.attackEntityFrom(par1DamageSource, par2);
+
+    }
+  }
+}

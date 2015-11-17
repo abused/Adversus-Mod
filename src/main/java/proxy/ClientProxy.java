@@ -7,6 +7,7 @@ import TileEntity.WitchBlockEntity;
 import TileEntity.WitchBlockRenderer;
 import TileEntity.WizBlockEntity;
 import TileEntity.WizBlockRenderer;
+import TileEntity.Mobs.ModelClam;
 import TileEntity.Statues.AbusedBlockEntity;
 import TileEntity.Statues.AbusedBlockRenderer;
 import TileEntity.Statues.ArrxzonBlockEntity;
@@ -15,6 +16,10 @@ import TileEntity.Statues.DennisBlockEntity;
 import TileEntity.Statues.DennisBlockRenderer;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 public class ClientProxy extends CommonProxy {
@@ -29,7 +34,6 @@ public class ClientProxy extends CommonProxy {
 
 
 
-
 	}
 	
 	public void registerTileEntitySpecialRenderer() {
@@ -37,6 +41,20 @@ public class ClientProxy extends CommonProxy {
 
 	}
 	
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event){
+
+	}
+	
+	@EventHandler
+	   public void init(FMLInitializationEvent event){
+		
+	}
+	
+	@EventHandler
+	public void postinit(FMLPostInitializationEvent event) {
+		
+	}
 	
 		
 }

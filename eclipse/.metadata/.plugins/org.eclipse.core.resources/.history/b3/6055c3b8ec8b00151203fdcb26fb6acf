@@ -1,0 +1,537 @@
+package net.emportex.magic;
+
+import Generation.AdversusGeneration;
+import Plants.BlockCoal;
+import Plants.BlockDiamond;
+import Plants.BlockEmerald;
+import Plants.BlockEnder;
+import Plants.BlockGold;
+import Plants.BlockIron;
+import Plants.BlockObsidian;
+import Plants.BlockRedstone;
+import Plants.BlockRegen;
+import Plants.BlockShinre;
+import Plants.BlockShinre;
+import Plants.Dust.CoalDust;
+import Plants.Dust.DiamondDust;
+import Plants.Dust.EnderDust;
+import Plants.Dust.GoldDust;
+import Plants.Dust.IronDust;
+import Plants.Dust.ObsiDust;
+import Plants.Dust.RegenDust;
+import TileEntity.StoneBlock;
+import TileEntity.StoneBlockEntity;
+import TileEntity.WitchBlock;
+import TileEntity.WitchBlockEntity;
+import TileEntity.WizBlock;
+import TileEntity.WizBlockEntity;
+import TileEntity.Statues.AbusedBlock;
+import TileEntity.Statues.AbusedBlockEntity;
+import TileEntity.Statues.ArrxzonBlock;
+import TileEntity.Statues.ArrxzonBlockEntity;
+import TileEntity.Statues.DennisBlock;
+import TileEntity.Statues.DennisBlockEntity;
+import World.ModBiomes;
+import World.WorldTypes;
+import World.dimensions.Dimension;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.WorldSavedData;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.EnumHelper;
+import proxy.CommonProxy;
+
+@Mod(modid = "mm", name = "Magic Mod", version = "1.2")
+public class MagicMod {
+	
+	public static int DimID = 2;
+	
+	@SidedProxy(clientSide="proxy.ClientProxy", serverSide="proxy.CommonProxy")	
+	public static CommonProxy proxy;
+	
+	@Instance("MagicMod")
+    public static MagicMod instance;
+	
+	//all items go here
+	public static Item itemSpectrum;
+	public static Item itemAdversusbook;
+	public static Block blockWitch;
+	public static Block blockSore;
+	public static Item itemWflight;
+	public static Item itemWizfly;
+	public static Item itemTrans;
+	public static Item itemCrystal;
+	public static Item Cobble;
+	public static Item Regen;
+	public static Block WizBlock;
+	public static Block StoneBlock;
+	public static Block DennisBlock;
+	public static Block AbusedBlock;
+	public static Block ArrxzonBlock;
+	public static Block WitchBlock;
+	public static Block blockBrick;
+	public static Block blockBrick2;
+	public static Block Bedrockore;
+	public static Item Bedrockingot;
+	public static Block blockBrick3;
+	public static Block Bedrock2;
+    public static Item Stone;
+    public static Block Red;
+    public static Block Green;
+    public static Block Orange;
+    public static Block Black;
+    public static Block Pink;
+    public static Block Purple;
+    public static Block Blue;	
+	public static Block blockBrick5;
+	public static Block Lemni;
+	public static Block Lemni2;
+	public static Block Lemni3;
+	public static Block Lemni4;
+	public static Block Lemni5;
+	public static Block Lamp;
+	public static Block Lamp2;
+	public static Block Lamp3;
+	public static Block Lamp4;
+	public static Block Scafold;
+	public static Block Adamo;
+	public static Block Grass;
+	public static Item aw;
+	public static Item red;
+	public static Block redore;
+	public static Item ED;
+	public static Block Eore;
+	public static Block LightStone;
+
+	public static Item Shinrebansho;
+    public static Block blockShinre;
+    public static Item CoalDust;
+    public static Block BlockCoal;
+	public static Item IronDust;
+	public static Block BlockIron;
+	public static Item GoldDust;
+	public static Block BlockGold;
+	public static Item DiamondDust;
+	public static Block BlockDiamond;
+	public static Item ObsiDust;
+	public static Block BlockObsidian;
+	public static Item RedstoneDust;
+	public static Block BlockRedstone;
+	public static Block BlockEnder;
+	public static Item EnderDust;
+	public static Block BlockEmerald;
+	public static Item RegenDust;
+	public static Block BlockRegen;
+	
+	public static BlockModPortal lightPortal;
+	public static BlockModFire lightFire;
+    
+	public static Item Witchsword;
+	public static Item Wizardsword;
+	public static Item Magiciansword;
+	public static Item Godarc;
+	public static Item Godpic;
+	public static Item Godarc2;
+	public static Item Godarc3;
+	public static final Item.ToolMaterial witchswordmaterial = EnumHelper.addToolMaterial("witchswordmaterial", 0, 2000, 6.0F, 10.0F, 15);
+	public static final Item.ToolMaterial wizardswordmaterial = EnumHelper.addToolMaterial("wizardswordmaterial", 0, 2000, 6.0F, 10.0F, 15);
+	public static final Item.ToolMaterial magicianswordmaterial = EnumHelper.addToolMaterial("magicianswordmaterial", 0, 4000, 6.0F, 12.5F, 30);
+	public static final Item.ToolMaterial godarcmaterial = EnumHelper.addToolMaterial("godarcmaterial", 2, -1, 6.0F, 60F, 30);
+	public static final Item.ToolMaterial godpicmaterial = EnumHelper.addToolMaterial("godpicmaterial", 4, -1, 1000F, 16F, 30);
+	public static final Item.ToolMaterial godarcmaterial2 = EnumHelper.addToolMaterial("godarcmaterial2", 2, -1, 6.0F, 60F, 30);
+	public static final Item.ToolMaterial godarcmaterial3 = EnumHelper.addToolMaterial("godarcmaterial3", 2, -1, 6.0F, 60F, 30);
+	
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event){
+		
+		itemSpectrum = new ItemSpectrum().setUnlocalizedName("ItemSpectrum").setTextureName("mm:blockspectrum").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(itemSpectrum, itemSpectrum.getUnlocalizedName().substring(5));
+		
+		blockWitch = new BlockWitch(Material.rock).setBlockName("BlockWitch");
+		GameRegistry.registerBlock(blockWitch, blockWitch.getUnlocalizedName().substring(5));
+		
+		blockSore = new BlockSore(Material.rock).setBlockName("BlockSore").setBlockTextureName("mm:spectrumore").setCreativeTab(tabMagic);
+		GameRegistry.registerBlock(blockSore, blockSore.getUnlocalizedName().substring(5));
+		
+		itemWflight = new ItemWflight().setUnlocalizedName("ItemWFlight").setTextureName("mm:wflight").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(itemWflight, itemWflight.getUnlocalizedName().substring(5));
+		
+		Witchsword = new ItemWitchsword(witchswordmaterial).setUnlocalizedName("ItemWitchsword").setTextureName("mm:witchsword").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(Witchsword, Witchsword.getUnlocalizedName().substring(5));
+		
+		Wizardsword = new ItemWizardsword(wizardswordmaterial).setUnlocalizedName("ItemWizardsword").setTextureName("mm:wizardsword").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(Wizardsword, Wizardsword.getUnlocalizedName().substring(5));
+		
+		Magiciansword = new ItemMagiciansword(magicianswordmaterial).setUnlocalizedName("ItemMagiciansword").setTextureName("mm:magiciansword").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(Magiciansword, Magiciansword.getUnlocalizedName().substring(5));
+		
+		Godarc = new ItemGodarc(godarcmaterial).setUnlocalizedName("ItemGodarc").setTextureName("mm:Godarc").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(Godarc, Godarc.getUnlocalizedName().substring(5));
+		
+		Godarc2 = new ItemGodarc2(godarcmaterial2).setUnlocalizedName("ItemGodarc2").setTextureName("mm:godarc2").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(Godarc2, Godarc2.getUnlocalizedName().substring(5));
+		
+		Godarc3 = new ItemGodarc3(godarcmaterial3).setUnlocalizedName("ItemGodarc3").setTextureName("mm:godarc3").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(Godarc3, Godarc3.getUnlocalizedName().substring(5));
+		
+		Godpic = new ItemGodpic(godpicmaterial).setUnlocalizedName("Godpic").setTextureName("mm:godpic").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(Godpic, Godpic.getUnlocalizedName().substring(5));
+		
+		itemWizfly = new ItemWizfly().setUnlocalizedName("Wizfly").setTextureName("mm:wizfly").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(itemWizfly, itemWizfly.getUnlocalizedName().substring(5));
+		
+		itemTrans = new ItemTrans().setUnlocalizedName("ItemTrans").setTextureName("mm:transorb").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(itemTrans, itemTrans.getUnlocalizedName().substring(5));
+		
+		itemCrystal = new ItemFood(20, 1.0F, false).setUnlocalizedName("ItemCrystal").setTextureName("mm:crystal").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(itemCrystal, itemCrystal.getUnlocalizedName().substring(5));
+		
+		Cobble = new Cobble().setUnlocalizedName("Cobble").setTextureName("mm:cobble").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(Cobble, Cobble.getUnlocalizedName().substring(5));
+		
+		Regen = new Regen().setUnlocalizedName("Regen").setTextureName("mm:regen").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(Regen, Regen.getUnlocalizedName().substring(5));
+				
+		itemAdversusbook = new ItemAdversusbook().setUnlocalizedName("ItemAdversusBook").setTextureName("mm:adversusbook").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(itemAdversusbook, itemAdversusbook.getUnlocalizedName().substring(5));
+		
+		blockBrick = new BlockBrick(Material.rock).setBlockName("BlockBrick").setBlockTextureName("mm:brick").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(blockBrick, blockBrick.getUnlocalizedName().substring(5));
+		
+		blockBrick2 = new BlockBrick2(Material.rock).setBlockName("BlockBrick2").setBlockTextureName("mm:brick2").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(blockBrick2, blockBrick2.getUnlocalizedName().substring(5));
+		
+		Bedrockore = new Bedrockore(Material.rock).setBlockName("Bedrockore").setBlockTextureName("mm:bedrock").setCreativeTab(tabMagic);
+		GameRegistry.registerBlock(Bedrockore, Bedrockore.getUnlocalizedName().substring(5));
+		
+		Bedrockingot = new Bedrockingot().setUnlocalizedName("Bedrockingot").setTextureName("mm:bedrockingot").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(Bedrockingot, Bedrockingot.getUnlocalizedName().substring(5));
+		
+		blockBrick3 = new BlockBrick3(Material.rock).setBlockName("BlockBrick3").setBlockTextureName("mm:brick3").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(blockBrick3, blockBrick3.getUnlocalizedName().substring(5));
+		
+		Bedrock2 = new Bedrock2(Material.rock).setBlockName("Bedrock2").setBlockTextureName("mm:bedrock2");
+		GameRegistry.registerBlock(Bedrock2, Bedrock2.getUnlocalizedName().substring(5));
+		
+		Red = new Red(Material.rock).setBlockName("Red").setBlockTextureName("mm:red").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Red, Red.getUnlocalizedName().substring(5));
+		
+		Blue = new Blue(Material.rock).setBlockName("Blue").setBlockTextureName("mm:blue").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Blue, Blue.getUnlocalizedName().substring(5));
+		
+		Orange = new Orange(Material.rock).setBlockName("Orange").setBlockTextureName("mm:orange").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Orange, Orange.getUnlocalizedName().substring(5));
+		
+		Black = new Black(Material.rock).setBlockName("Black").setBlockTextureName("mm:black").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Black, Black.getUnlocalizedName().substring(5));
+		
+		Green = new Green(Material.rock).setBlockName("Green").setBlockTextureName("mm:green").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Green, Green.getUnlocalizedName().substring(5));
+		
+		Purple = new Purple(Material.rock).setBlockName("Purple").setBlockTextureName("mm:purple").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Purple, Purple.getUnlocalizedName().substring(5));
+		
+		Pink = new Pink(Material.rock).setBlockName("Pink").setBlockTextureName("mm:pink").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Pink, Pink.getUnlocalizedName().substring(5));
+		
+		blockBrick5 = new blockBrick5(Material.rock).setBlockName("Brick5").setBlockTextureName("mm:brick5").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(blockBrick5, blockBrick5.getUnlocalizedName().substring(5));
+		
+		Lemni = new Lemni(Material.rock).setBlockName("Lemni").setBlockTextureName("mm:lemni").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Lemni, Lemni.getUnlocalizedName().substring(5));
+		
+		Lemni2 = new Lemni2(Material.rock).setBlockName("Lemni2").setBlockTextureName("mm:lemni2").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Lemni2, Lemni2.getUnlocalizedName().substring(5));
+		
+		Lemni3 = new Lemni3(Material.rock).setBlockName("Lemni3").setBlockTextureName("mm:lemni3").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Lemni3, Lemni3.getUnlocalizedName().substring(5));
+		
+		Lemni4 = new Lemni4(Material.rock).setBlockName("Lemni4").setBlockTextureName("mm:lemni4").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Lemni4, Lemni4.getUnlocalizedName().substring(5));
+		
+		Lemni5 = new Lemni5(Material.rock).setBlockName("Lemni5").setBlockTextureName("mm:lemni5").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Lemni5, Lemni5.getUnlocalizedName().substring(5));
+		
+		Lamp = new Lamp(Material.rock).setBlockName("Lamp").setBlockTextureName("mm:lamp").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Lamp, Lamp.getUnlocalizedName().substring(5));
+		
+		Lamp2 = new Lamp2(Material.rock).setBlockName("Lamp2").setBlockTextureName("mm:lamp2").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Lamp2, Lamp2.getUnlocalizedName().substring(5));
+		
+		Lamp3 = new Lamp3(Material.rock).setBlockName("Lamp3").setBlockTextureName("mm:lamp3").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Lamp3, Lamp3.getUnlocalizedName().substring(5));
+		
+		Lamp4 = new Lamp4(Material.rock).setBlockName("Lamp4").setBlockTextureName("mm:lamp4").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Lamp4, Lamp4.getUnlocalizedName().substring(5));
+		
+		Scafold = new Scafold(Material.wood).setBlockName("Scafold").setBlockTextureName("mm:scafold").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Scafold, Scafold.getUnlocalizedName().substring(5));
+		
+		Adamo = new Adamo(Material.rock).setBlockName("Adamo").setBlockTextureName("mm:adamo").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Adamo, Adamo.getUnlocalizedName().substring(5));
+		
+		Grass = new Grass(Material.grass).setBlockName("Grass").setBlockTextureName("mm:grass").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(Grass, Grass.getUnlocalizedName().substring(5));
+		
+		aw = new AW().setUnlocalizedName("AW").setTextureName("mm:aw").setCreativeTab(tabCrops);
+		GameRegistry.registerItem(aw, aw.getUnlocalizedName().substring(5));
+		
+		red = new redD().setUnlocalizedName("red").setTextureName("mm:red").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(red, red.getUnlocalizedName().substring(5));
+		
+		redore = new RedOre(Material.rock).setBlockName("RedOre").setBlockTextureName("mm:redore").setCreativeTab(tabMagic);
+		GameRegistry.registerBlock(redore, redore.getUnlocalizedName().substring(5));
+		
+		ED = new ED().setUnlocalizedName("ed").setTextureName("mm:ed").setCreativeTab(tabMagic);
+		GameRegistry.registerItem(ED, ED.getUnlocalizedName().substring(5));
+		
+		LightStone = new LightStone(Material.rock).setBlockName("LightStone").setBlockTextureName("mm:lightstone").setCreativeTab(tabDecoration);
+		GameRegistry.registerBlock(LightStone, LightStone.getUnlocalizedName().substring(5));
+		
+		lightPortal = new BlockModPortal("lightPortal");
+		GameRegistry.registerBlock(lightPortal, "lightPortal");
+		
+		lightFire = new BlockModFire("lightFire");
+		GameRegistry.registerBlock(lightFire, "lightFire");
+		
+		Eore = new Eore(Material.rock).setBlockName("Eore").setBlockTextureName("mm:eore").setCreativeTab(tabMagic);
+		GameRegistry.registerBlock(Eore, Eore.getUnlocalizedName().substring(5));
+		
+		
+		//world gen file
+		
+		GameRegistry.registerWorldGenerator(new AdversusGeneration(), 0);
+		
+		//all tile entities
+		
+		MinecraftForge.addGrassSeed(new ItemStack(blockShinre), 10);
+		
+		WitchBlock = new WitchBlock().setBlockName("WitchBlock");
+		GameRegistry.registerBlock(WitchBlock, "WitchBlock");
+		
+		StoneBlock = new StoneBlock().setBlockName("StoneBlock");
+		GameRegistry.registerBlock(StoneBlock, "StoneBlock");
+		
+		DennisBlock = new DennisBlock().setBlockName("DennisBlock");
+		GameRegistry.registerBlock(DennisBlock, "DennisBlock");
+		
+		AbusedBlock = new AbusedBlock().setBlockName("AbusedBlock");
+		GameRegistry.registerBlock(AbusedBlock, "AbusedBlock");
+		
+		ArrxzonBlock = new ArrxzonBlock().setBlockName("ArrxzonBlock");
+		GameRegistry.registerBlock(ArrxzonBlock, "ArrxzonBlock");
+		
+		GameRegistry.registerTileEntity(WizBlockEntity.class, "WizBlock");
+		GameRegistry.registerTileEntity(WitchBlockEntity.class, "WitchBlock");
+		GameRegistry.registerTileEntity(StoneBlockEntity.class, "StoneBlock");
+		GameRegistry.registerTileEntity(DennisBlockEntity.class, "DennisBlock");
+		GameRegistry.registerTileEntity(AbusedBlockEntity.class, "AbusedBlock");
+		GameRegistry.registerTileEntity(ArrxzonBlockEntity.class, "ArrxzonBlock");
+		
+		ModBiomes.registerWithBiomeDictionary();
+		Dimension.registerWorldProvider();
+		Dimension.registerDimensions();
+		WorldTypes.addCustomWorldTypes();
+
+		proxy.registerRenderThings();
+		
+		
+		
+		//all plants
+		
+		blockShinre = new BlockShinre().setBlockName("BlockShinre");
+		GameRegistry.registerBlock(blockShinre, "Shinre");
+		
+		Shinrebansho = new Shinrebansho().setUnlocalizedName("Shinrebansho");
+		GameRegistry.registerItem(Shinrebansho, "Shinrebansho");
+		
+		BlockCoal = new BlockCoal().setBlockName("BlockCoal").setBlockTextureName("mm:coalseeds");
+		GameRegistry.registerBlock(BlockCoal, "BlockCoal");
+		
+		CoalDust = new CoalDust().setUnlocalizedName("CoalDust");
+		GameRegistry.registerItem(CoalDust, "CoalDust");
+		
+		BlockIron = new BlockIron().setBlockName("BlockIron");
+		GameRegistry.registerBlock(BlockIron, "BlockIron");
+		
+		IronDust = new IronDust().setUnlocalizedName("IronDust");
+		GameRegistry.registerItem(IronDust, "IronDust");
+		
+		BlockGold = new BlockGold().setBlockName("BlockGold");
+		GameRegistry.registerBlock(BlockGold, "BlockGold");
+		
+		GoldDust = new GoldDust().setUnlocalizedName("GoldDust");
+		GameRegistry.registerItem(GoldDust, "GoldDust");
+		
+		DiamondDust = new DiamondDust().setUnlocalizedName("DiamondDust");
+		GameRegistry.registerItem(DiamondDust, "DiamondDust");
+		
+		BlockDiamond = new BlockDiamond().setBlockName("BlockDiamond");
+		GameRegistry.registerBlock(BlockDiamond, "BlockDiamond");
+		
+		ObsiDust = new ObsiDust().setUnlocalizedName("ObsidianDust");
+		GameRegistry.registerItem(ObsiDust, "ObsiDust");
+		
+		BlockObsidian = new BlockObsidian().setBlockName("BlockObsidian");
+		GameRegistry.registerBlock(BlockObsidian,"BlockObsidian");
+		
+		BlockRedstone = new BlockRedstone().setBlockName("BlockRedstone");
+		GameRegistry.registerBlock(BlockRedstone, "BlockRedstone");
+		
+		BlockEnder = new BlockEnder().setBlockName("BlockEnder");
+		GameRegistry.registerBlock(BlockEnder, "BlockEnder");
+		
+		EnderDust = new EnderDust().setUnlocalizedName("EnderDust");
+		GameRegistry.registerItem(EnderDust, "EnderDust");
+		
+		BlockEmerald = new BlockEmerald().setBlockName("BlockEmerald");
+		GameRegistry.registerBlock(BlockEmerald, "BlockEmerald");
+		
+		RegenDust = new RegenDust().setUnlocalizedName("RegenDust");
+		GameRegistry.registerItem(RegenDust, "RegenDust");
+		
+		BlockRegen = new BlockRegen().setBlockName("BlockRegen");
+		GameRegistry.registerBlock(BlockRegen, "BlockRegen");
+	}
+
+
+@EventHandler
+   public void init(FMLInitializationEvent event){
+					   
+		itemTrans.setContainerItem(itemTrans);
+		Cobble.setContainerItem(Cobble);
+		aw.setContainerItem(aw);
+		GameRegistry.addRecipe(new ItemStack(itemAdversusbook), new Object[]{"sb  ","f  ","   ", 's', itemSpectrum, 'b',Items.book, 'f', Items.feather});
+		GameRegistry.addRecipe(new ItemStack(Items.bucket, 3), new Object[]{"   ","i i"," i ", 'i', Items.iron_ingot});
+		GameRegistry.addRecipe(new ItemStack(itemCrystal),new Object[]{" g ","gdg"," g ", 'g', Items.gold_ingot, 'd', Items.diamond});
+		GameRegistry.addRecipe(new ItemStack(Items.gold_ingot), new Object[]{"ti ","ii ","i  ", 't', itemTrans, 'i', Items.iron_ingot});
+		GameRegistry.addRecipe(new ItemStack(Items.iron_ingot, 4), new Object[]{"tg ","   ","   ", 'g', Items.gold_ingot, 't', itemTrans});
+		GameRegistry.addRecipe(new ItemStack(Items.diamond), new Object[]{"tg ","gg ","g  ", 't', itemTrans, 'g', Items.gold_ingot});
+		GameRegistry.addRecipe(new ItemStack(Items.gold_ingot, 4), new Object[]{"td ","   ","   ", 't', itemTrans, 'd', Items.diamond});
+		GameRegistry.addRecipe(new ItemStack(Blocks.bedrock), new Object[]{"bbb","bbb","bbb", 'b', Bedrockingot});
+		GameRegistry.addRecipe(new ItemStack(Scafold, 32), new Object[]{"sss","sss","sss", 's', Items.stick});
+		GameRegistry.addRecipe(new ItemStack(Items.coal, 16), new Object[]{"ccc","c c","ccc", 'c', CoalDust});
+		GameRegistry.addRecipe(new ItemStack(BlockCoal), new Object[]{"csc","sas","csc", 'c', Items.coal, 's', Shinrebansho, 'a', aw});
+		GameRegistry.addRecipe(new ItemStack(aw), new Object[]{"sss","sgs","sss", 's', Shinrebansho, 'g', Blocks.gold_block});
+		GameRegistry.addRecipe(new ItemStack(BlockIron), new Object[]{"ici","cac","ici", 'i', Items.iron_ingot, 'c', CoalDust, 'a', aw});
+		GameRegistry.addRecipe(new ItemStack(Blocks.iron_ore, 12), new Object[]{"iii","i i","iii", 'i', IronDust});
+		GameRegistry.addRecipe(new ItemStack(BlockGold), new Object[]{"gig","iai","gig", 'g', Items.gold_ingot, 'i', IronDust, 'a', aw});
+		GameRegistry.addRecipe(new ItemStack(Blocks.gold_ore, 8), new Object[]{"ggg","g g","ggg", 'g', GoldDust});
+		GameRegistry.addRecipe(new ItemStack(BlockDiamond), new Object[]{"rdr","sas","rdr", 'r', red, 'd', Items.diamond,'s', Shinrebansho, 'a', aw});
+		GameRegistry.addRecipe(new ItemStack(Items.diamond, 2), new Object[]{"ddd","d d","ddd", 'd', DiamondDust});
+		GameRegistry.addRecipe(new ItemStack(BlockObsidian), new Object[]{"oio","iai","oio", 'o', Blocks.obsidian, 'i', IronDust, 'a', aw});
+		GameRegistry.addRecipe(new ItemStack(Blocks.obsidian, 10), new Object[]{"ooo","o o","ooo", 'o', ObsiDust});
+		GameRegistry.addRecipe(new ItemStack(BlockRedstone), new Object[]{"rir","rar","rir", 'r', Items.redstone, 'i', IronDust, 'a', aw});
+		GameRegistry.addRecipe(new ItemStack(BlockEnder), new Object[]{"pep","eae","pep", 'e', Blocks.end_stone, 'p', Items.ender_pearl, 'a', aw});
+		GameRegistry.addRecipe(new ItemStack(Items.ender_pearl), new Object[]{"ddd","d d","ddd", 'd', EnderDust});
+		GameRegistry.addRecipe(new ItemStack(Blocks.end_stone), new Object[]{"dd ","dd ","   ", 'd', EnderDust});
+		GameRegistry.addRecipe(new ItemStack(Blocks.end_portal_frame), new Object[]{"ddd","ded","ddd", 'd', EnderDust, 'e', Items.ender_pearl});
+		GameRegistry.addRecipe(new ItemStack(BlockEmerald), new Object[]{"ere","sas","ere", 'e', Items.emerald, 'r', red, 'a', aw, 's', Shinrebansho});
+		GameRegistry.addRecipe(new ItemStack(blockBrick, 8), new Object[]{"ddd","dbd","ddd", 'b', new ItemStack(Items.dye, 1, 4), 'd', new ItemStack(Blocks.stonebrick)});
+		GameRegistry.addRecipe(new ItemStack(blockBrick2, 8), new Object[]{"bbb","bdb","bbb", 'b', new ItemStack(Blocks.stonebrick), 'd', new ItemStack(Items.dye, 1, 9)});
+		GameRegistry.addRecipe(new ItemStack(blockBrick3, 8), new Object[]{"bbb","brb","bbb", 'b', new ItemStack(Blocks.stonebrick), 'r', new ItemStack(Items.dye, 1, 1)});
+		GameRegistry.addRecipe(new ItemStack(Black, 8), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.stone), 'i', new ItemStack(Items.dye, 1, 10)});
+		GameRegistry.addRecipe(new ItemStack(Orange, 8), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.stone), 'i', new ItemStack(Items.dye, 1, 14)});
+		GameRegistry.addRecipe(new ItemStack(Purple, 8), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.stone), 'i', new ItemStack(Items.dye, 1, 5)});
+		GameRegistry.addRecipe(new ItemStack(Green, 8), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.stone), 'i', new ItemStack(Items.dye, 1, 2)});
+		GameRegistry.addRecipe(new ItemStack(Red, 8), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.stone), 'i', new ItemStack(Items.dye, 1, 1)});
+		GameRegistry.addRecipe(new ItemStack(Blue, 8), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.stone), 'i', new ItemStack(Items.dye, 1, 12)});
+		GameRegistry.addRecipe(new ItemStack(Pink, 8), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.stone), 'i', new ItemStack(Items.dye, 1, 9)});
+		GameRegistry.addRecipe(new ItemStack(Lemni3, 16), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.cobblestone), 'i', new ItemStack(Items.dye, 1, 2)});
+		GameRegistry.addRecipe(new ItemStack(Lemni4, 16), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.cobblestone), 'i', new ItemStack(Items.dye, 1, 9)});
+		GameRegistry.addRecipe(new ItemStack(Lemni4, 16), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.cobblestone), 'i', new ItemStack(Items.dye, 1, 9)});
+		GameRegistry.addRecipe(new ItemStack(Lemni5, 16), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.cobblestone), 'i', new ItemStack(Items.dye, 1, 11)});
+		GameRegistry.addRecipe(new ItemStack(Lemni2, 16), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.cobblestone), 'i', new ItemStack(Items.dye, 1, 1)});
+		GameRegistry.addRecipe(new ItemStack(Lemni, 16), new Object[]{"sss","sis","sss", 's', new ItemStack(Blocks.cobblestone), 'i', new ItemStack(Items.dye, 1, 4)});
+		GameRegistry.addRecipe(new ItemStack(blockBrick5, 8), new Object[]{"sss","sis","sss", 's', new ItemStack(Items.quartz), 'i', new ItemStack(Items.coal)});
+		GameRegistry.addRecipe(new ItemStack(Adamo, 8), new Object[]{"sss","sis","sss", 's', new ItemStack(Items.quartz), 'i', new ItemStack(Items.stick)});
+		GameRegistry.addRecipe(new ItemStack(Lamp, 4), new Object[]{"si ","   ","   ", 's', new ItemStack(Blocks.glowstone), 'i', new ItemStack(Items.dye, 1, 15)});
+		GameRegistry.addRecipe(new ItemStack(Lamp2, 4), new Object[]{"si ","   ","   ", 's', new ItemStack(Blocks.glowstone), 'i', new ItemStack(Items.dye, 1, 4)});
+		GameRegistry.addRecipe(new ItemStack(Lamp3, 4), new Object[]{"si ","   ","   ", 's', new ItemStack(Blocks.glowstone), 'i', new ItemStack(Items.dye, 1, 1)});
+		GameRegistry.addRecipe(new ItemStack(Lamp4, 4), new Object[]{"si ","   ","   ", 's', new ItemStack(Blocks.glowstone), 'i', new ItemStack(Items.dye, 1, 2)});
+		GameRegistry.addRecipe(new ItemStack(Regen), new Object[]{"prp"," b "," b ", 'r', RegenDust, 'p', Items.blaze_powder, 'b', Items.blaze_rod});
+		GameRegistry.addRecipe(new ItemStack(Witchsword), new Object[]{" r "," r "," a ", 'r', red, 'a', aw});
+		GameRegistry.addRecipe(new ItemStack(Wizardsword), new Object[]{" e "," e "," a ", 'e', ED, 'a', aw});
+		GameRegistry.addRecipe(new ItemStack(itemWflight), new Object[]{"  r"," r ","h  ", 'r', red, 'h', Blocks.hay_block});
+		GameRegistry.addRecipe(new ItemStack(itemWizfly), new Object[]{" e "," r "," r ", 'r', red, 'e', ED});
+        GameRegistry.addRecipe(new ItemStack(Magiciansword), new Object[]{"ziw"," i "," i ", 'z', Wizardsword, 'i', Items.iron_ingot, 'w', Witchsword});
+        GameRegistry.addRecipe(new ItemStack(Godarc), new Object[]{" m ","zdw"," m ", 'm', Magiciansword, 'z', Wizardsword, 'w', Witchsword, 'd', Items.diamond});
+        GameRegistry.addRecipe(new ItemStack(Godarc2), new Object[]{" m ","zdw"," m ", 'm', Magiciansword, 'z', Wizardsword, 'w', Witchsword, 'd', Blocks.obsidian});
+        GameRegistry.addRecipe(new ItemStack(Godarc3), new Object[]{" m ","zdw"," m ", 'm', Magiciansword, 'z', Wizardsword, 'w', Witchsword, 'd', aw});
+        GameRegistry.addRecipe(new ItemStack(itemTrans), new Object[]{" d ","igi"," d ", 'd', Items.diamond, 'g', Items.gold_ingot, 'i', Items.iron_ingot});
+        GameRegistry.addRecipe(new ItemStack(Cobble), new Object[]{"lcw","   ","   ", 'w', Items.water_bucket, 'c', Blocks.cobblestone, 'l', Items.lava_bucket});
+        GameRegistry.addRecipe(new ItemStack(Godpic), new Object[]{"gd ","   ","   ", 'g', Godarc, 'd', Items.diamond_pickaxe});
+        GameRegistry.addRecipe(new ItemStack(Godpic), new Object[]{"gd ","   ","   ", 'g', Godarc2, 'd', Items.diamond_pickaxe});
+        GameRegistry.addRecipe(new ItemStack(Godpic), new Object[]{"gd ","   ","   ", 'g', Godarc3, 'd', Items.diamond_pickaxe});
+        GameRegistry.addRecipe(new ItemStack(BlockRegen), new Object[]{"rsr","sws","rsr", 'w', blockShinre, 'r', Items.cooked_beef, 's', GoldDust});
+
+        
+		GameRegistry.addShapelessRecipe(new ItemStack(itemAdversusbook), new ItemStack(itemSpectrum), Items.book, Items.feather);
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.cobblestone, 64), new ItemStack(Cobble));
+		GameRegistry.addShapelessRecipe(new ItemStack(blockShinre, 3), new ItemStack(Shinrebansho));
+		GameRegistry.addShapelessRecipe(new ItemStack(Bedrockingot, 9), new ItemStack(Blocks.bedrock));
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.stone, 16), new ItemStack(StoneBlock));
+		GameRegistry.addShapelessRecipe(new ItemStack(Grass, 8), new ItemStack(Blocks.dirt), Blocks.grass);
+		GameRegistry.addShapelessRecipe(new ItemStack(BlockCoal), new ItemStack(CoalDust), Items.wheat_seeds);
+		GameRegistry.addShapelessRecipe(new ItemStack(BlockIron), new ItemStack(IronDust), Items.wheat_seeds);
+		GameRegistry.addShapelessRecipe(new ItemStack(BlockGold), new ItemStack(GoldDust), Items.wheat_seeds);
+		GameRegistry.addShapelessRecipe(new ItemStack(BlockDiamond), new ItemStack(DiamondDust), Items.wheat_seeds);
+		GameRegistry.addShapelessRecipe(new ItemStack(BlockObsidian), new ItemStack(ObsiDust), Items.wheat_seeds);
+		GameRegistry.addShapelessRecipe(new ItemStack(BlockRedstone, 2), new ItemStack(BlockRedstone), Items.redstone);
+		GameRegistry.addShapelessRecipe(new ItemStack(BlockEnder), new ItemStack(EnderDust), Items.wheat_seeds);
+
+		
+		GameRegistry.addSmelting(blockSore, new ItemStack(itemSpectrum), 2.0F);
+		GameRegistry.addSmelting(Bedrockore, new ItemStack(Bedrockingot, 3), 4.0F);
+		GameRegistry.addSmelting(redore, new ItemStack(red), 3.5F);
+		GameRegistry.addSmelting(Eore, new ItemStack(ED), 3.5F);
+		
+		
+	}
+	@EventHandler
+	public void postinit(FMLPostInitializationEvent event) {
+		
+	}
+	
+	public static CreativeTabs tabMagic = new CreativeTabs("tabMagic"){
+		@Override
+		public Item getTabIconItem(){
+			return new ItemStack(itemSpectrum).getItem();
+		}
+	};
+	
+	public static CreativeTabs tabDecoration = new CreativeTabs("tabDecoration"){
+		@Override
+		public Item getTabIconItem(){
+			return new ItemStack(blockBrick).getItem();
+		}
+	};
+	
+	public static CreativeTabs tabCrops = new CreativeTabs("tabCrops"){
+		@Override
+		public Item getTabIconItem(){
+			return new ItemStack(Shinrebansho).getItem();
+		}
+	};
+
+	public static String modid;
+	
+	
+}

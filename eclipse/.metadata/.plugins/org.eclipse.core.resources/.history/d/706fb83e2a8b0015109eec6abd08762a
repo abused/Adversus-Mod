@@ -1,0 +1,52 @@
+package TileEntity.Mobs;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.settings.GameSettings;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.world.World;
+
+@SideOnly(Side.CLIENT)
+public class RenderManager
+{
+	  /** A map of entity classes and the associated renderer. */
+    public Map entityRenderMap = new HashMap();
+    /** The static instance of RenderManager. */
+    public static RenderManager instance = new RenderManager();
+    /** Renders fonts */
+    private FontRenderer fontRenderer;
+    public static double renderPosX;
+    public static double renderPosY;
+    public static double renderPosZ;
+    public TextureManager renderEngine;
+    public ItemRenderer itemRenderer;
+    /** Reference to the World object. */
+    public World worldObj;
+    /** Rendermanager's variable for the player */
+    public EntityLivingBase livingPlayer;
+    public Entity field_147941_i;
+    public float playerViewY;
+    public float playerViewX;
+    /** Reference to the GameSettings object. */
+    public GameSettings options;
+    public double viewerPosX;
+    public double viewerPosY;
+    public double viewerPosZ;
+    /** whether bounding box should be rendered or not */
+    public static boolean debugBoundingBox;
+    private static final String __OBFID = "CL_00000991";
+
+    private RenderManager(){
+    	this.entityRenderMap.put(EntityClam.class, new RenderClam(new ModelClam(), 0.7F));
+        Iterator iterator = this.entityRenderMap.values().iterator();
+
+    }
+}

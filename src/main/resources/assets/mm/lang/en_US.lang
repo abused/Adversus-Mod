@@ -74,6 +74,12 @@ tile.BlockRegen.name=Regeneration Seed
 item.RegenDust.name=Regeneration Dust
 tile.Eore.name=Enhanced Diamond Ore
 item.ed.name=Enhanced Diamond
+tile.lightFire.name=Light Fire
+tile.lightPortal.name=Adversus Portal
+tile.log_lightOak.name=Adversus Log
+tile.Light_Leaves.name=Adversus Leaves
+tile.light_Sapling.name=Adversus Sapling
+tile.LightStone.name=Adversus Stone
 
 itemGroup.tabMagic=Adversus Mod
 itemGroup.tabDecoration=Adversus Decorations

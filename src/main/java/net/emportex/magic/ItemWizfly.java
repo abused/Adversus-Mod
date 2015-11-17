@@ -17,9 +17,9 @@ public class ItemWizfly extends Item {
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
 	{
-	par3List.add("§5Creative Flight When in inventory!");
-	par3List.add("§5Right Click to Activate");
-	par3List.add("§5Deactivates on signout/leaving world");
+	par3List.add("Creative Flight When in inventory!");
+	par3List.add("Right Click to Activate");
+	par3List.add("Deactivates on signout/leaving world");
 	}
 	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)

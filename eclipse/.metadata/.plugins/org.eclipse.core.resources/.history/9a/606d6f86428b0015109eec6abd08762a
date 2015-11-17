@@ -1,0 +1,7 @@
+package TileEntity.Mobs;
+
+import net.minecraft.entity.EntityLiving;
+
+public class EntityClam extends EntityLiving {
+
+}

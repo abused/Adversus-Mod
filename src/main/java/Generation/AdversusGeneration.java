@@ -26,6 +26,10 @@ public class AdversusGeneration implements IWorldGenerator {
 		case -1:
 			generateNether(world, random, chunkX, chunkZ);
 			break;
+		case 3:
+			LIGHTFORESTDIMENSION(world, random, chunkX, chunkZ);
+			
+
 		}
 	}
 	
@@ -43,6 +47,28 @@ public class AdversusGeneration implements IWorldGenerator {
 	
 	public void generateNether(World world, Random rand, int x, int z){
 		
+	}
+	/*
+	 * first number is the min vein size
+	 * second is max vein size
+	 * third is the chance it spawns
+	 * fourth is the min level it spawns
+	 * fifth is the max lever it spawns
+	 */
+	public void LIGHTFORESTDIMENSION(World world, Random rand, int x, int z){
+		generateOre(Blocks.iron_ore, world, rand, x, z, 2, 12, 16, 0, 60, MagicMod.LightStone);
+		generateOre(Blocks.coal_ore, world, rand, x, z, 2, 12, 20, 0, 60, MagicMod.LightStone);
+		generateOre(Blocks.gold_ore, world, rand, x, z, 2, 12, 12, 0, 60, MagicMod.LightStone);
+		generateOre(Blocks.diamond_ore, world, rand, x, z, 2, 12, 8, 0, 40, MagicMod.LightStone);
+		generateOre(Blocks.emerald_ore, world, rand, x, z, 2, 12, 10, 0, 60, MagicMod.LightStone);
+		generateOre(Blocks.lapis_ore, world, rand, x, z, 2, 12, 15, 0, 60, MagicMod.LightStone);
+		generateOre(MagicMod.Bedrockore, world, rand, x, z, 2, 6, 5, 12, 14, Blocks.stone);
+		generateOre(MagicMod.blockSore, world, rand, x, z, 2, 6, 5, 12, 14, Blocks.stone);
+		generateOre(MagicMod.redore, world, rand, x, z, 2, 6, 5, 12, 14, Blocks.stone);
+		generateOre(MagicMod.Eore, world, rand, x, z, 2, 6, 5, 12, 14, Blocks.stone);
+		generateOre(Blocks.redstone_ore, world, rand, x, z, 2, 12, 16, 0, 60, MagicMod.LightStone);
+
+
 	}
 	
 	public void generateOre(Block block, World world, Random random, int chunkX, int chunkZ, int minVienSize, int maxVienSize, int chance, int minY, int maxY, Block generateIn) {

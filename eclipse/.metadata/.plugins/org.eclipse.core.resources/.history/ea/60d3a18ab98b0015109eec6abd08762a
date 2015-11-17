@@ -1,0 +1,5 @@
+package World.decorators;
+
+public class BiomeDecoratorHelper {
+
+}

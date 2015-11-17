@@ -1,0 +1,16 @@
+package TileEntity.Mobs;
+
+import net.minecraft.entity.EntityLiving;
+
+public class EntityClam extends EntityLiving {
+
+	@Override
+	protected boolean isAIEnabled()
+	{
+	   return true;
+	}
+	
+	protected boolean attackEntityAsMob() {
+		return true;
+	}
+}
